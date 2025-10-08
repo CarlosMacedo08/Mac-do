@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macêdo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header com logo e menu -->
+    <header>
+        <div class="logo">
+            <img src="img/f8e55afa3df0fdd779f349cd4a882c57.jpg" alt="Logo Macêdo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" id="inicio-btn">Início</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#" id="contato-btn">Contato</a></li>
+                <li><a href="#" id="favoritos-btn">Favoritos</a></li>
+            </ul>
+        </nav>
+        <div id="sacola">
+            <button id="abrir-sacola" title="Abrir sacola" style="background:none;border:none;font-size:1.1em;cursor:pointer;color:#e6007e;">
+                🛍️ Sacola (<span id="sacola-quantidade">0</span>)
+            </button>
+            <div id="sacola-itens" class="sacola-itens" style="display:none"></div>
+            <div id="parcelamento-info" style="display:block; text-align:center; margin:15px 0; font-size:1.08em; color:#1949ce; font-weight:bold;">
+                Parcele em até <span style="color:#e6007e;">5x de <span id="valor-parcela">R$ 0,00</span></span> sem juros no cartão!
+            </div>
+            <div id="parcelamento-opcoes" style="text-align:center; margin:15px 0; font-size:1.08em; color:#1949ce; font-weight:bold;">
+                <!-- As opções serão preenchidas pelo JS -->
+            </div>
+            <button id="enviar-whatsapp" style="display:none; margin-top:10px; background:#25d366; color:#fff; border:none; border-radius:5px; padding:8px 16px; cursor:pointer;">
+                Enviar pedido via WhatsApp
+            </button>
+
+            <!-- Novo bloco para escolha de método de pagamento -->
+            <div id="pagamento-metodo" style="margin:18px 0; text-align:center;">
+                <label for="metodo-pagamento" style="font-weight:bold; color:#1949ce;">Escolha o método de pagamento:</label><br>
+                <select id="metodo-pagamento" style="padding:8px 18px; border-radius:8px; margin-top:8px; font-size:1em;">
+                    <option value="cartao">Cartão de crédito</option>
+                    <option value="pix">Pix</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div id="contato-info" style="display:none; text-align:center; margin:15px 0; font-size:1.1em; color:#e6007e; font-weight:bold;">
+        Telefone do vendedor: (89) 98151-2060<br>
+        E-mail: macedodesac@gmail.com
+    </div>
+
+    <!-- Banner principal -->
+    <section class="banner">
+        <img src="img/config_AVN_20240603-185151_bannerPDP.png" alt="Banner Promocional">
+        <div class="banner-texto">
+            <h1>Bem-vindo a Macêdo</h1>
+            <p>Confira nossas novidades e promoções!</p>
+        </div>
+    </section>
+
+    <!-- Anúncio de oferta -->
+    <div class="anuncio-oferta" id="anuncio-oferta"></div>
+
+    <!-- Grid de produtos -->
+    <main>
+        <h2>Destaques</h2>
+        <!-- Carrossel horizontal com os produtos roláveis -->
+        <div class="carrossel-produtos" id="carrossel-produtos">
+            <!-- Produtos roláveis (exemplo: produtos 1 a 22) -->
+            <div class="produto desconto frete-gratis" data-link="https://seudominio.com/produto1">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/84f3969f-323b-44a8-9d75-150adca41a3f-perfume-sauvage-dior-parfum-perfume-masculino-60ml-2aa3f2daf7ed246c6217246902550220-1024-1024.png" alt="Sauvage Dior">
+                <h3>Sauvage</h3>
+                <p>Dior Sauvage Perfume Masculino Parfum.</p>
+                <span class="preco-antigo">R$ 199,90</span>
+                <span class="preco">R$ 149,90</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto desconto" data-link="https://seudominio.com/produto2">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/NATBRA-108405_2.jpg" alt="Kaiak">
+                <h3>kaiak</h3>
+                <p>Perfume kaiak com fragrância marcante.</p>
+                <span class="preco-antigo">R$ 259,90</span>
+                <span class="preco">R$ 239,90</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto desconto" data-link="https://seudominio.com/produto3">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/yves-saint-laurent-y-men-edp-60ml-2-c43c5321caea49c797d04906735d2cf2-1-6451091f7c035.webp" alt="Y de Yves Saint Laurent">
+                <h3>Y de Yves Saint Laurent</h3>
+                <p>Perfume Masculino Y de Yves Saint Laurent - 100ml.</p>
+                <span class="preco-antigo">R$ 159,90</span>
+                <span class="preco">R$ 129,90</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto desconto" data-link="https://seudominio.com/produto4">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/ferrari-perfume-masculino-black-signature-eau-de-toilette-75ml-33640.webp" alt="Ferrari Black Signature">
+                <h3>Perfumes Masculinos Importados Ferrari</h3>
+                <p>Fragrância Masculina Ferrari - 100ML</p>
+                <span class="preco-antigo">R$ 220,00</span>
+                <span class="preco">R$ 190,90</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto desconto" data-link="https://seudominio.com/produto5">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/212-men-de-carolina-herrera-eau-de-toilette-masculino.webp" alt="212 Men Carolina Herrera">
+                <h3>212 Men Carolina Herrera</h3>
+                <p>Perfume masculino sofisticado e marcante - 100ml.</p>
+                <span class="preco-antigo">R$ 250,00</span>
+                <span class="preco">R$ 210,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto desconto" data-link="https://seudominio.com/produto6">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/1750768790390-onepdpeditopushdm974x1298px052xjpg_2596x1948.jpg" alt="Bleu de Chanel">
+                <h3>Bleu de Chanel</h3>
+                <p>Perfume masculino amadeirado aromático - 100ml.</p>
+                <span class="preco-antigo">R$ 350,00</span>
+                <span class="preco">R$ 320,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/produto7">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/71BGKfzPgQL._UF350,350_QL80_.jpg" alt="Versace Dylan Blue">
+                <h3>Versace Dylan Blue</h3>
+                <p>Perfume masculino intenso e moderno - 100ml.</p>
+                <span class="preco">R$ 270,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/produto8">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/20230326200104-6420ceb02c238_mini.webp" alt="Acqua di Giò">
+                <h3>Acqua di Giò</h3>
+                <p>Perfume masculino fresco e elegante - 100ml.</p>
+                <span class="preco">R$ 250,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <!-- 8 novos perfumes -->
+            <div class="produto" data-link="https://seudominio.com/perfume9">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/20231125195457-65627b4181fa7.webp" alt="Armani Code">
+                <h3>Armani Code</h3>
+                <p>Elegância e sofisticação em cada nota.</p>
+                <span class="preco">R$ 299,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/perfume10">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/612DDVEHLmL._UF1000,1000_QL80_.jpg" alt="Invictus">
+                <h3>Invictus</h3>
+                <p>Fresco, vibrante e marcante - 100ml.</p>
+                <span class="preco">R$ 279,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/perfume11">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/61YdQ2CluHL._UF1000,1000_QL80_.jpg" alt="One Million">
+                <h3>One Million</h3>
+                <p>Ousadia e luxo em um só frasco.</p>
+                <span class="preco">R$ 310,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/perfume12">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/bfcfd8bbe7.webp" alt="212 VIP Men">
+                <h3>212 VIP Men</h3>
+                <p>Para homens autênticos e modernos.</p>
+                <span class="preco">R$ 265,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/perfume13">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/l1212-blanc-lacoste-perfume-masculino-eau-de-toilette--1-.webp" alt="Lacoste Blanc">
+                <h3>Lacoste Blanc</h3>
+                <p>Refrescante e esportivo - 100ml.</p>
+                <span class="preco">R$ 220,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/perfume14">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/ck-one-eau-de-toilette-calvin-klein-perfume-unissex-100ml--2-.webp" alt="CK One">
+                <h3>CK One</h3>
+                <p>Clássico, leve e unissex.</p>
+                <span class="preco">R$ 180,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/perfume15">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/72265-72485-72784.webp" alt="Hugo Boss Bottled">
+                <h3>Hugo Boss Bottled</h3>
+                <p>Elegância e masculinidade - 100ml.</p>
+                <span class="preco">R$ 295,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="https://seudominio.com/perfume16">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/le-male-elixir-1usk19xmcf.webp" alt="Le Male">
+                <h3>Le Male</h3>
+                <p>Icônico e envolvente - 125ml.</p>
+                <span class="preco">R$ 260,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/212-Sexy-Men-De-Carolina-Herrera-Eau-De-Toilette-Masculino.webp" alt="Perfume 17">
+                <h3>212 Sexy Men</h3>
+                <p>Perfume masculino sensual e marcante.</p>
+                <span class="preco">R$ 210,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <img src="img/D_Q_NP_708829-MLA84844867419_052025-O.webp" alt="Perfume 18">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <h3>Malbec</h3>
+                <p>Fragrância amadeirada intensa - 100ml.</p>
+                <span class="preco">R$ 159,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <img src="img/61sxFMjeBSL._UF1000,1000_QL80_.jpg" alt="Perfume 19">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <h3>Essencial Natura</h3>
+                <p>Elegância e sofisticação para o dia a dia.</p>
+                <span class="preco">R$ 189,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <img src="img/6baec038-4f1c-4d57-9dfe-d90e83688d0c-bot-58526-quasar-deep-blue-ambientada-05.webp" alt="Perfume 20">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <h3>Quasar</h3>
+                <p>Fresco e vibrante, ideal para o verão.</p>
+                <span class="preco">R$ 120,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <img src="img/61d1EDplYpL._UF1000,1000_QL80_.jpg" alt="Perfume 21">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <h3>Portinari</h3>
+                <p>Clássico da Boticário, marcante e elegante.</p>
+                <span class="preco">R$ 135,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <img src="img/b9587aa5-017f-4b7c-9385-e2db18d21e16-bot-49765-uomini-colonia-segredinho-02.webp" alt="Perfume 22">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <h3>Uomini</h3>
+                <p>Perfume masculino sofisticado - 100ml.</p>
+                <span class="preco">R$ 145,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+        </div>
+
+        <!-- 10 produtos fora da rolagem, em grid -->
+        <h2 style="margin-top:40px;">Mais Perfumes</h2>
+        <div class="produtos-grid">
+            <!-- 10 produtos fixos, fora do carrossel -->
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/D_NQ_NP_712716-MLB81437363072_122024-O.webp" alt="Perfume 24">
+                <h3>Arbo</h3>
+                <p>Fresco, leve e ideal para o dia.</p>
+                <span class="preco">R$ 110,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/D_NQ_NP_954213-MLB42223729573_062020-O.webp" alt="Perfume 25">
+                <h3>Insensatez</h3>
+                <p>Unissex, moderno e versátil.</p>
+                <span class="preco">R$ 99,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/25458_floratta_blue1-57e1a92791.webp" alt="Perfume 26">
+                <h3>Floratta Blue</h3>
+                <p>Leve, floral e delicado - 75ml.</p>
+                <span class="preco">R$ 89,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/688f040a-705d-453d-ac73-f91df87be29d-bot-74043-linda-colonia-frontal-01.webp" alt="Perfume 27">
+                <h3>Linda</h3>
+                <p>Fragrância feminina alegre e marcante.</p>
+                <span class="preco">R$ 120,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/LILY-EDP-75ml_B77524_conceito_.webp" alt="Perfume 28">
+                <h3>Lily</h3>
+                <p>Perfume feminino sofisticado - 75ml.</p>
+                <span class="preco">R$ 210,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/colonia-thaty-z83wm6tx1r.webp" alt="Perfume 29">
+                <h3>Thaty</h3>
+                <p>Clássico, leve e refrescante.</p>
+                <span class="preco">R$ 75,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/79dbbeb40e5d38732ed1166e9ce77085-c7530ee3a2f14b44e617142427278088-640-0.jpg" alt="Perfume 30">
+                <h3>Glamour</h3>
+                <p>Feminino, marcante e sofisticado.</p>
+                <span class="preco">R$ 140,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/51XuD94ArXL._UF1000,1000_QL80_.jpg" alt="Perfume 31">
+                <h3>Make B.</h3>
+                <p>Perfume feminino moderno e elegante.</p>
+                <span class="preco">R$ 170,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+            <div class="produto" data-link="#">
+                <button class="favorito-btn" title="Adicionar aos favoritos">♡</button>
+                <img src="img/eiw4fmwnfmqrr3b7to94ay0vmxjjob89qdol_640x640+fill_ffffff.jpg" alt="Perfume 32">
+                <h3>Floratta Red</h3>
+                <p>Floral frutado, inspirado na maçã de Vermont.</p>
+                <span class="preco">R$ 99,00</span>
+                <button class="comprar-btn">Comprar</button>
+            </div>
+        </div>
+        <button id="ver-todos-produtos" style="display:none; margin: 20px auto; padding: 10px 24px; background: #e6007e; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1em;">
+            Ver todos os produtos
+        </button>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 Catálogo Digital. Todos os direitos reservados.</p>
+    </footer>
+    <script src="main.js"></script>
+    <script>
+        if (sacolaItens) {
+            sacolaItens.addEventListener('click', function(e) {
+                if (e.target.classList.contains('remover-btn')) {
+                    const idx = parseInt(e.target.getAttribute('data-idx'));
+                    sacola.splice(idx, 1);
+                    atualizarSacola();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
