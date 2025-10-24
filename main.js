@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const valorParcela = formatBRL(total / parcelas);
             let detalhesPagamento = '';
             if (metodo === 'pix') {
-                detalhesPagamento = `Pagamento: PIX%0AChave PIX: seu-pix@exemplo.com`;
+                detalhesPagamento = `Pagamento: PIX%0AChave PIX: (89) 981512060`;
             } else {
                 detalhesPagamento = `Pagamento: Cartão%0AParcelas: ${parcelas}x de ${valorParcela} sem juros`;
             }
